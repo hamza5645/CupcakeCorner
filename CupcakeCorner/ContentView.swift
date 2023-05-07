@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Response: Codable {
-    var reasults: [Result]
+    var results: [Result]
 }
 
 struct Result: Codable {
@@ -42,7 +42,7 @@ struct ContentView: View {
             let (data, _) = try await URLSession.shared.data(from: url)
             
             if let decodedResponse = try? JSONDecoder().decode(Response.self, from: data) {
-                results = decodedResponse.reasults
+                results = decodedResponse.results
             }
         } catch {
             print("Invalid data")
