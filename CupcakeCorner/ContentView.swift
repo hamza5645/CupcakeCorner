@@ -8,19 +8,39 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var order = Order()
+    
     var body: some View {
-        AsyncImage(url: URL(string: "https://developer.apple.com/swift/images/swift-og.png")) { phase in
-            if let image = phase.image {
-                image
-                    .resizable()
-                    .scaledToFit()
-            } else if phase.error != nil {
-                Text("Error loading the image.")
-            } else {
-                ProgressView()
+        NavigationView {
+            Form {
+                Section {
+                    Picker("Select your cake type.", selection: $order.type) {
+                        ForEach(Order.types.indices) {
+                            Text(Order.types[$0])
+                        }
+                    }
+                    
+                    Stepper("Number of cakes \(order.quantity)", value: $order.quantity, in: 1...30)
+                }
+                Section {
+                    Toggle("Extras", isOn: $order.specialRequestsEnabled.animation())
+                    
+                    if order.specialRequestsEnabled {
+                        Toggle("Add extra frosting", isOn: $order.extraFrosting)
+                        Toggle("Add sprinkles", isOn: $order.addSprinkles)
+                        Toggle("Add marshmello", isOn: $order.addMurshmello)
+                    }
+                }
+                Section {
+                    NavigationLink {
+                        AddressView(order: order)
+                    } label: {
+                        Text("Delivery details")
+                    }
+                }
             }
+            .navigationTitle("Cupcake Corner")
         }
-//        .frame(width: 500, height: 500)
     }
 }
 
