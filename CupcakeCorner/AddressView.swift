@@ -11,12 +11,40 @@ struct AddressView: View {
     @ObservedObject var order: Order
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            VStack {
+                Form {
+                    Section {
+                        TextField("Name", text: $order.name)
+                        TextField("Street Address", text: $order.streetAddress)
+                        TextField("City", text: $order.city)
+                        TextField("Zip Code", text: $order.zip)
+                    }
+                }
+                NavigationLink {
+                    CheckOutView(order: order)
+                } label: {
+                    Rectangle()
+                        .frame(width: 250, height: 70)
+                        .foregroundColor(.green)
+                        .cornerRadius(8)
+                        .overlay(
+                            Text("Check Out")
+                                .foregroundColor(Color.primary)
+                                .bold()
+                        )
+                }
+                Spacer()
+                Spacer()
+            }
+            .navigationTitle("Address")
+            .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 struct AddressView_Previews: PreviewProvider {
     static var previews: some View {
-        AddressView(order: Order())
+        NavigationView {
+            AddressView(order: Order())
+        }
     }
 }
