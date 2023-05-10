@@ -11,12 +11,49 @@ struct CheckOutView: View {
     @ObservedObject var order: Order
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+//        ScrollView {
+            VStack {
+                AsyncImage(url: URL(string: "https://hws.dev/img/cupcakes@3x.jpg"), scale: 3) { image in
+                    image
+                        .resizable()
+                        .scaledToFit()
+                } placeholder: {
+                    ProgressView()
+                }
+                .frame(height: 233)
+                
+                Text("Total Price is \(order.cost, format: .currency(code: "USD"))")
+                    .font(.title)
+                    .bold()
+                
+                Spacer()
+                
+                Button {
+                    //
+                }label: {
+                    Rectangle()
+                        .frame(width: 250, height: 70)
+                        .foregroundColor(.green)
+                        .cornerRadius(8)
+                        .overlay(
+                            Text("Pay")
+                                .foregroundColor(Color.primary)
+                                .bold()
+                        )
+                    
+                }
+                .padding()
+            }
+//        }
+        .navigationTitle("Check Out")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 struct CheckOutView_Previews: PreviewProvider {
     static var previews: some View {
-        CheckOutView(order: Order())
+        NavigationView {
+            CheckOutView(order: Order())
+        }
     }
 }
