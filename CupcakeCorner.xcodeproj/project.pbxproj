@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F0784DB2A0BA9E30074FAF6 /* CheckOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0784DA2A0BA9E30074FAF6 /* CheckOutView.swift */; };
 		2F84B2222A03613400F2EB21 /* CupcakeCornerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B2212A03613400F2EB21 /* CupcakeCornerApp.swift */; };
 		2F84B2242A03613400F2EB21 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F84B2232A03613400F2EB21 /* ContentView.swift */; };
 		2F84B2262A03613700F2EB21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F84B2252A03613700F2EB21 /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2F0784DA2A0BA9E30074FAF6 /* CheckOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOutView.swift; sourceTree = "<group>"; };
 		2F84B21E2A03613400F2EB21 /* CupcakeCorner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CupcakeCorner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F84B2212A03613400F2EB21 /* CupcakeCornerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CupcakeCornerApp.swift; sourceTree = "<group>"; };
 		2F84B2232A03613400F2EB21 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				2F84B2212A03613400F2EB21 /* CupcakeCornerApp.swift */,
 				2F84B2232A03613400F2EB21 /* ContentView.swift */,
 				2FFA542A2A0A55F900268781 /* AddressView.swift */,
+				2F0784DA2A0BA9E30074FAF6 /* CheckOutView.swift */,
 				2FFA54282A0A352F00268781 /* Order.swift */,
 				2F84B2252A03613700F2EB21 /* Assets.xcassets */,
 				2F84B2272A03613700F2EB21 /* Preview Content */,
@@ -264,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FFA54292A0A352F00268781 /* Order.swift in Sources */,
+				2F0784DB2A0BA9E30074FAF6 /* CheckOutView.swift in Sources */,
 				2FFA542B2A0A55F900268781 /* AddressView.swift in Sources */,
 				2F84B2242A03613400F2EB21 /* ContentView.swift in Sources */,
 				2F84B2222A03613400F2EB21 /* CupcakeCornerApp.swift in Sources */,
