@@ -25,7 +25,7 @@ struct AddressView: View {
                 } label: {
                     Rectangle()
                         .frame(width: 250, height: 70)
-                        .foregroundColor(.green)
+                        .foregroundColor(order.validAddress ? Color.green : Color.gray)
                         .cornerRadius(8)
                         .overlay(
                             Text("Check Out")
@@ -33,6 +33,7 @@ struct AddressView: View {
                                 .bold()
                         )
                 }
+                .disabled(order.validAddress == false )
                 Spacer()
                 Spacer()
             }

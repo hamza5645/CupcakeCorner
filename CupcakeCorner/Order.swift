@@ -28,4 +28,12 @@ class Order: ObservableObject {
     @Published var streetAddress = ""
     @Published var city = ""
     @Published var zip = ""
+    
+    var validAddress: Bool {
+        if name.isEmpty || streetAddress.isEmpty || city.isEmpty || zip.isEmpty {
+            return false
+        } else {
+            return true 
+        }
+    }
 }
