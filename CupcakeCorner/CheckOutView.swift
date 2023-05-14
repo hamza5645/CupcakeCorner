@@ -10,6 +10,9 @@ import SwiftUI
 struct CheckOutView: View {
     @ObservedObject var order: Order
     
+    @State private var confirmationMessage = ""
+    @State private var showingConfirmation = false
+    
     var body: some View {
 //        ScrollView {
             VStack {
@@ -29,7 +32,9 @@ struct CheckOutView: View {
                 Spacer()
                 
                 Button {
-                    //
+                    Task {
+                        await placeOrder()
+                    }
                 }label: {
                     Rectangle()
                         .frame(width: 250, height: 70)
@@ -47,6 +52,33 @@ struct CheckOutView: View {
 //        }
         .navigationTitle("Check Out")
         .navigationBarTitleDisplayMode(.inline)
+        .alert("Thank you", isPresented: $showingConfirmation) {
+            Button("Ok") { }
+        } message: {
+            Text(confirmationMessage)
+        }
+    }
+    
+    func placeOrder() async {
+        guard let encoded = try? JSONEncoder().encode(order) else {
+            print("Failed to encode order.")
+            return
+        }
+        
+        let url = URL(string: "https://reqres.in/api/cupcakes")!
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-type")
+        request.httpMethod = "POST"
+        
+        do {
+            let (data, _) = try await URLSession.shared.upload(for: request, from: encoded)
+            
+            let decodedOrder = try JSONDecoder().decode(Order.self, from: data)
+            confirmationMessage = "Your order for \(decodedOrder.quantity)x \(Order.types[decodedOrder.type].lowercased()) Cupcakes is on it's way "
+            showingConfirmation = true
+        } catch {
+            print("CheckOut failed.")
+        }
     }
 }
 
