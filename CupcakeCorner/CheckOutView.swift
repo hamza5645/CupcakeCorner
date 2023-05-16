@@ -12,6 +12,7 @@ struct CheckOutView: View {
     
     @State private var confirmationMessage = ""
     @State private var showingConfirmation = false
+    @State private var ShowingErrorMessage = false
     
     var body: some View {
 //        ScrollView {
@@ -49,13 +50,15 @@ struct CheckOutView: View {
                 }
                 .padding()
             }
-//        }
         .navigationTitle("Check Out")
         .navigationBarTitleDisplayMode(.inline)
         .alert("Thank you", isPresented: $showingConfirmation) {
             Button("Ok") { }
         } message: {
             Text(confirmationMessage)
+        }
+        .alert("Error while checking out" ,isPresented: $ShowingErrorMessage) {
+            
         }
     }
     
@@ -77,7 +80,7 @@ struct CheckOutView: View {
             confirmationMessage = "Your order for \(decodedOrder.quantity)x \(Order.types[decodedOrder.type].lowercased()) Cupcakes is on it's way "
             showingConfirmation = true
         } catch {
-            print("CheckOut failed.")
+            ShowingErrorMessage = true
         }
     }
 }
